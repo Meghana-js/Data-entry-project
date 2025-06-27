@@ -1,1 +1,13 @@
+import csv
 
+def add_data(name, email, phone_number):
+    with open('../data/data_entry_form.csv', 'a', newline='') as csvfile:
+        fieldnames = ['Name', 'Email', 'Phone Number']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        if csvfile.tell() == 0:
+            writer.writeheader()
+
+        writer.writerow({'Name': name, 'Email': email, 'Phone Number': phone_number})
+
+add_data('John Doe', 'john.doe@example.com', '123-456-7890')
